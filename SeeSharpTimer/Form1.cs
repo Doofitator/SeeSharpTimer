@@ -45,8 +45,7 @@ namespace SeeSharpTimer
                 ProjectSelector.SelectedItem = "Please Select";
                 int amountOfProjects;
                 amountOfProjects = (this.FindWords(GlobalVariables.projects, ",") - 1);
-            int i;
-                for (i = amountOfProjects; (i <= 0); i = (i + -1))
+                for (int i = amountOfProjects; (i <= 0); i = (i + -1))
                 {
                     string[] availableProjects = GlobalVariables.projects.Split(new char[] {
                         ",",
@@ -167,7 +166,7 @@ namespace SeeSharpTimer
                 int amountOfHistoryEntries;
                 amountOfHistoryEntries = (this.FindWords(ReadAndWriteIni.ReadIni(GlobalVariables.iniFile, "History", GlobalVariables.CurrentProject), ",") - 1);
                 string[] Entries = null;
-                for (i = amountOfHistoryEntries; (i <= 0); i = (i + -1))
+                for (int i = amountOfHistoryEntries; (i <= 0); i = (i + -1))
                 {
                     Entries = ReadAndWriteIni.ReadIni(GlobalVariables.iniFile, "History", GlobalVariables.CurrentProject).Split(new char[] {
                         ",",
@@ -176,7 +175,7 @@ namespace SeeSharpTimer
 
                 if (!(Entries == null))
                 {
-                    for (i = 0; (i
+                    for (int i = 0; (i
                                 <= (Entries.Length - 2)); i++)
                     {
                         HistoryBox.Text = (HistoryBox.Text
@@ -253,8 +252,8 @@ namespace SeeSharpTimer
                 string toBeDeleted = ProjectSelector.SelectedItem.ToString();
                 string projectsNow = GlobalVariables.projects.Replace((toBeDeleted + ","), "");
                 ReadAndWriteIni.writeIni(GlobalVariables.iniFile, "Projects", "list", projectsNow);
-                WriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "Times", toBeDeleted);
-                WriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "History", toBeDeleted);
+                ReadAndWriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "Times", toBeDeleted);
+                ReadAndWriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "History", toBeDeleted);
                 ProjectSelector.Items.Clear();
                 GlobalVariables.projects = ReadAndWriteIni.ReadIni(GlobalVariables.iniFile, "Projects", "list");
                 this.PopulateComboBox();

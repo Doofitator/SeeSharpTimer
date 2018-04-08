@@ -18,13 +18,13 @@ namespace SeeSharpTimer
 
         public static void writeIni(string iniFileName, string Section, string ParamName, string ParamVal)
         {
-            int Result = WriteIni.WritePrivateProfileString(Section, ParamName, ParamVal, iniFileName);
+            int Result = WritePrivateProfileString(Section, ParamName, ParamVal, iniFileName);
             return Result;
         }
 
         public static void deleteKeyFromIni(string iniFileName, string Section, string ParamName)
         {
-            string Result = WriteIni.WritePrivateProfileString(Section, ParamName, null, iniFileName);
+            string Result = WritePrivateProfileString(Section, ParamName, null, iniFileName);
             return Result;
         }
 
@@ -35,7 +35,7 @@ namespace SeeSharpTimer
         public static void ReadIni(string Filename, string AppName, string KeyName)
         {
             // make vars
-            object Exists = false;
+            bool Exists = false;
             if (System.IO.File.Exists(Filename))
             {
                 Exists = true;
@@ -45,7 +45,7 @@ namespace SeeSharpTimer
             if ((Exists == true))
             {
                 StringBuilder sb = new StringBuilder(500);
-                int result = ReadIni.GetPrivateProfileStringW(AppName, KeyName, "", sb, sb.Capacity, Filename);
+                int result = GetPrivateProfileStringW(AppName, KeyName, "", sb, sb.Capacity, Filename);
                 if ((result > 0))
                 {
                     return sb.ToString();
